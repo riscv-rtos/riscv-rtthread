@@ -1,0 +1,7 @@
+if CHIP_NAME_RISCV64_C906
+    source "$RTT_DIR/chip/sophgo/riscv64_c906/Kconfig"
+endif
+
+if CHIP_NAME_RISCV64_C906_LITTLE
+    source "$RTT_DIR/chip/sophgo/riscv64_c906_little/Kconfig"
+endif

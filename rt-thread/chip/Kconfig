@@ -1,0 +1,3 @@
+if CHIP_FAMILY_SOPHGO
+    source "$RTT_DIR/chip/sophgo/Kconfig"
+endif

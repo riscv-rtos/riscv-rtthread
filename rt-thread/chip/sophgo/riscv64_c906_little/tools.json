@@ -1,0 +1,144 @@
+{
+    "version": "1.0.0",
+    "tools": [
+        {
+            "attribute": "toolchain",
+            "description": "Toolchain for Xuantie RISC-V CPU",
+            "export_paths": [
+                  "Xuantie-900-gcc-elf-newlib-v2.8.1",
+                  "bin"
+            ],
+            "tool_name": "riscv64-unknown-elf-",
+            "version": [
+                {
+                    "linux-x86_64": {
+                        "urls": [
+                            {
+                                "sha256": "df697f8b74b570c01510f83116afc7728ba8cb8d15deb9862d9654f3657dfba3",
+                                "size": 171457140,
+                                "region": "default",
+                                "url": "https://github.com/flyingcys/xuantie-gnu-toolchain/releases/download/V2.8.1/Xuantie-900-gcc-elf-newlib-v2.8.1-x86_64.tar.gz"
+                            },
+                            {
+                                "sha256": "44a66182f3772b17de0e418496729f594d97341ed116277c66ce6bfb23bd2a90",
+                                "size": 171258397,
+                                "region": "cn",
+                                "url": "https://occ-oss-prod.oss-cn-hangzhou.aliyuncs.com/resource//1705395512373/Xuantie-900-gcc-elf-newlib-x86_64-V2.8.1-20240115.tar.gz"
+                            }
+                        ]
+                    },
+                    "linux-aarch64": {
+                        "urls": [
+                            {
+                                "sha256": "af71ba4390928a3bf793bf38a7736c056080900029945826ccb022fdef020af1",
+                                "size": 155618502,
+                                "region": "default",
+                                "url": "https://github.com/flyingcys/xuantie-gnu-toolchain/releases/download/V2.8.1/Xuantie-900-gcc-elf-newlib-v2.8.1-aarch64.tar.gz"
+                            },
+                            {
+                                "sha256": "af71ba4390928a3bf793bf38a7736c056080900029945826ccb022fdef020af1",
+                                "size": 155618502,
+                                "region": "cn",
+                                "url": "https://riscv-tools.oss-cn-shanghai.aliyuncs.com/xuantie-toolchain/V2.8.1/Xuantie-900-gcc-elf-newlib-v2.8.1-aarch64.tar.gz"
+                            }
+                        ]
+                    },
+                    "linux-riscv64": {
+                        "urls": [
+                            {
+                                "sha256": "7f57fdd804ddc9a1623a47b01cfa0c465b90af7fa12b9623b303cba606801c21",
+                                "size": 156276603,
+                                "region": "default",
+                                "url": "https://github.com/flyingcys/xuantie-gnu-toolchain/releases/download/V2.8.1/Xuantie-900-gcc-elf-newlib-v2.8.1-riscv64.tar.gz"
+                            },
+                            {
+                                "sha256": "7f57fdd804ddc9a1623a47b01cfa0c465b90af7fa12b9623b303cba606801c21",
+                                "size": 156276603,
+                                "region": "cn",
+                                "url": "https://riscv-tools.oss-cn-shanghai.aliyuncs.com/xuantie-toolchain/V2.8.1/Xuantie-900-gcc-elf-newlib-v2.8.1-riscv64.tar.gz"
+                            }
+                        ]
+                    },
+                    "darwin-x86_64": {
+                        "urls": [
+                            {
+                                "sha256": "880c86bef7c8832acb20dcf87a4f8145963f324f84bbdbf1adc1ef36f3128747",
+                                "size": 162337362,
+                                "region": "default",
+                                "url": "https://github.com/flyingcys/xuantie-gnu-toolchain/releases/download/V2.8.1/Xuantie-900-gcc-elf-newlib-v2.8.1-darwin-x86_64.tar.gz"
+                            },
+                            {
+                                "sha256": "880c86bef7c8832acb20dcf87a4f8145963f324f84bbdbf1adc1ef36f3128747",
+                                "size": 162337362,
+                                "region": "cn",
+                                "url": "https://riscv-tools.oss-cn-shanghai.aliyuncs.com/xuantie-toolchain/V2.8.1/Xuantie-900-gcc-elf-newlib-v2.8.1-darwin-x86_64.tar.gz"
+                            }
+                        ]
+                    },
+                    "darwin-arm64": {
+                        "urls": [
+                            {
+                                "sha256": "cfa42f07095b040cc991ab8710c60fd33cc160907fd7b66e89127be033664cfb",
+                                "size": 159331035,
+                                "region": "default",
+                                "url": "https://github.com/flyingcys/xuantie-gnu-toolchain/releases/download/V2.8.1/Xuantie-900-gcc-elf-newlib-v2.8.1-darwin-arm64.tar.gz"
+                            },
+                            {
+                                "sha256": "cfa42f07095b040cc991ab8710c60fd33cc160907fd7b66e89127be033664cfb",
+                                "size": 159331035,
+                                "region": "cn",
+                                "url": "https://riscv-tools.oss-cn-shanghai.aliyuncs.com/xuantie-toolchain/V2.8.1/Xuantie-900-gcc-elf-newlib-v2.8.1-darwin-arm64.tar.gz"
+                            }
+                        ]
+                    },
+                    "windows-amd64": {
+                        "urls": [
+                            {
+                                "sha256": "b98284f6fd4a1eb7e86377ff4afba3caebdf084b05b1cbcd4d8c9136c9445964",
+                                "size": 173226261,
+                                "region": "default",
+                                "url": "https://github.com/flyingcys/xuantie-gnu-toolchain/releases/download/V2.8.1/Xuantie-900-gcc-elf-newlib-v2.8.1-windows-amd64.tar.gz"
+                            },
+                            {
+                                "sha256": "91f90bc6e5bf18262d7892af4e1f57102f8420b49479c7e9556f67485109d4c0",
+                                "size": 173232723,
+                                "region": "cn",
+                                "url": "https://occ-oss-prod.oss-cn-hangzhou.aliyuncs.com/resource//1705395452010/Xuantie-900-gcc-elf-newlib-mingw-V2.8.1-20240115.tar.gz"
+                            }
+                        ]
+                    }                    
+                }
+            ]
+        },
+        {
+            "attribute": "build_dependency",
+            "description": "build dependency for windows",
+            "export_paths": [
+                  "msys64",
+                  "usr",
+                  "bin"
+            ],
+            "tool_name": "msys64",
+            "version": [
+                {
+                    "windows-amd64": {
+                        "urls":  [
+                            {
+                                "sha256": "4767c1b48cb4a8159bc8afe99b5c07175df681b1a606ef77689bfa4a4e6ce6af",
+                                "size": 124071550,
+                                "region": "default",
+                                "url": "https://github.com/riscv-rtos/riscv-rtos-riscv-rtthread/releases/download/V0.0.1/msys64.tar.gz"
+                            },
+                            {
+                                "sha256": "4767c1b48cb4a8159bc8afe99b5c07175df681b1a606ef77689bfa4a4e6ce6af",
+                                "size": 124071550,
+                                "region": "cn",
+                                "url": "https://riscv-tools.oss-cn-shanghai.aliyuncs.com/msys64/msys64.tar.gz"
+                            }
+                        ]
+                    }  
+                }
+            ]
+        }
+    ]
+}

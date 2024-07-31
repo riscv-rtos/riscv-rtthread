@@ -1,0 +1,17 @@
+menu "Board Configuration"
+    choice
+    prompt "Chip Family Configuration"
+    default CHIP_FAMILY_SOPHGO
+
+    config CHIP_FAMILY_SOPHGO
+        bool "Sophgo"
+        help
+            Support for the sophgo boards.
+
+    endchoice
+
+    source "$RV_RTT_ROOT/boards/$CHIP_FAMILY/Kconfig"
+
+endmenu
+
+

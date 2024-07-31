@@ -1,0 +1,469 @@
+menu "General Drivers Configuration"
+
+    menuconfig BSP_USING_UART
+        bool "Using UART"
+        select RT_USING_SERIAL
+        default y
+
+        if BSP_USING_UART
+            config BSP_USING_UART0
+                bool "Enable UART 0"
+                default y if CHIP_NAME_RISCV64_C906
+
+                if BSP_USING_UART0
+                    choice
+                        prompt "UART0 RX PIN"
+                        default UART0_RX_USING_UART0_RX
+
+                        config UART0_RX_USING_UART0_RX
+                            bool "UART0_RX"
+                    endchoice
+                    
+                    choice
+                        prompt "UART0 TX PIN"
+                        default UART0_TX_USING_UART0_TX
+
+                        config UART0_TX_USING_UART0_TX
+                            bool "UART0_TX"
+                    endchoice
+                endif
+
+            config BSP_USING_UART1
+                bool "Enable UART 1"
+                default y if CHIP_NAME_RISCV64_C906_LITTLE
+
+                if BSP_USING_UART1
+                    choice
+                        prompt "UART1 RX PIN"
+                        default UART1_RX_USING_IIC0_SDA
+
+                        config UART1_RX_USING_IIC0_SDA
+                            bool "IIC0_SDA"
+                        config UART1_RX_USING_UART0_RX
+                            bool "UART0_RX"
+                        config UART1_RX_USING_JTAG_CPU_TCK
+                            bool "JTAG_CPU_TCK"                            
+                    endchoice
+                    
+                    choice
+                        prompt "UART1 TX PIN"
+                        default UART1_TX_USING_IIC0_SCL
+
+                        config UART1_TX_USING_IIC0_SCL
+                            bool "IIC0_SCL"
+                        config UART1_TX_USING_UART0_TX
+                            bool "UART0_TX"
+                        config UART1_TX_USING_JTAG_CPU_TMS
+                            bool "JTAG_CPU_TMS"                            
+                    endchoice
+                endif
+
+            config BSP_USING_UART2
+                bool "Enable UART 2"
+                default n
+                depends on CHIP_NAME_RISCV64_C906
+
+                if BSP_USING_UART2
+                    choice
+                        prompt "UART2 RX PIN"
+                        default UART2_RX_USING_SD1_D1
+
+                        config UART2_RX_USING_SD1_D1
+                            bool "SD1_D1"
+                        config UART2_RX_USING_IIC0_SDA
+                            bool "IIC0_SDA"
+                    endchoice
+                    
+                    choice
+                        prompt "UART2 TX PIN"
+                        default UART2_TX_USING_SD1_D2
+
+                        config UART2_TX_USING_SD1_D2
+                            bool "SD1_D2"
+                        config UART2_TX_USING_IIC0_SCL
+                            bool "IIC0_SCL"
+                    endchoice
+                endif
+
+            config BSP_USING_UART3
+                bool "Enable UART 3"
+                default n
+                depends on CHIP_NAME_RISCV64_C906
+
+                if BSP_USING_UART3
+                    choice
+                        prompt "UART3 RX PIN"
+                        default UART3_RX_USING_SD1_D1
+
+                        config UART3_RX_USING_SD1_D1
+                            bool "SD1_D1"
+                    endchoice
+                    
+                    choice
+                        prompt "UART3 TX PIN"
+                        default UART3_TX_USING_SD1_D2
+
+                        config UART3_TX_USING_SD1_D2
+                            bool "SD1_D2"
+
+                    endchoice
+                endif
+
+        endif
+
+    menuconfig BSP_USING_I2C
+        bool "Using I2C"
+        select RT_USING_I2C
+        select RT_USING_I2C_BITOPS
+        select RT_USING_PIN
+        default n
+
+        if BSP_USING_I2C
+
+            config BSP_USING_I2C1
+                bool "Enable I2C1"
+                default n
+
+                if BSP_USING_I2C1
+                    choice
+                        prompt "I2C1 SCL PIN"
+                        default I2C1_SCL_USING_SD1_D2
+
+                        config I2C1_SCL_USING_SD1_D2
+                            bool "SD1_D2"
+                        config I2C1_SCL_USING_SD1_D3
+                            bool "SD1_D3"
+                    endchoice
+                    
+                    choice
+                        prompt "I2C1 SDA PIN"
+                        default I2C1_SDA_USING_SD1_D1
+
+                        config I2C1_SDA_USING_SD1_D1
+                            bool "SD1_D1"
+                        config I2C1_SDA_USING_SD1_D0
+                            bool "SD1_D0"
+                    endchoice
+                endif
+
+            config BSP_USING_I2C2
+                bool "Enable I2C3"
+                default n
+
+                if BSP_USING_I2C2    
+                    choice
+                        prompt "I2C2 SCL PIN"
+                        default I2C2_SCL_USING_PAD_MIPI_TXP1
+
+                        config I2C2_SCL_USING_PAD_MIPI_TXP1
+                            bool "PAD_MIPI_TXP1"
+                    endchoice
+                    
+                    choice
+                        prompt "I2C2 SDA PIN"
+                        default I2C2_SDA_USING_PAD_MIPI_TXM1
+
+                        config I2C2_SDA_USING_PAD_MIPI_TXM1
+                            bool "PAD_MIPI_TXM1"
+                    endchoice
+                endif
+
+            config BSP_USING_I2C3
+                bool "Enable I2C3"
+                default n
+
+                if BSP_USING_I2C3    
+                    choice
+                        prompt "I2C3 SCL PIN"
+                        default I2C3_SCL_USING_SD1_CMD
+
+                        config I2C3_SCL_USING_SD1_CMD
+                            bool "SD1_CMD"
+                    endchoice
+                    
+                    choice
+                        prompt "I2C3 SDA PIN"
+                        default I2C3_SDA_USING_SD1_CLK
+
+                        config I2C3_SDA_USING_SD1_CLK
+                            bool "SD1_CLK"
+                    endchoice
+                endif
+        endif
+
+    menuconfig BSP_USING_ADC
+        bool "Using ADC"
+        select RT_USING_ADC
+        default n
+
+        if BSP_USING_ADC
+            config BSP_USING_ADC1_ACTIVE
+                bool "Enable ADC1 Controller in Active Domain"
+                default n
+
+                if BSP_USING_ADC1_ACTIVE
+                    choice
+                        prompt "Pin name for VIN1 in Active Domain"
+                        default ADC1_ACTIVE_USING_XGPIOB_3
+
+                        config ADC1_ACTIVE_USING_XGPIOB_3
+                            bool "XGPIOB_3"
+                    endchoice
+                endif
+
+            config BSP_USING_ADC1_NODIE
+                bool "Enable ADC1 Controller in No-die Domain"
+                default n
+
+                if BSP_USING_ADC1_NODIE
+                    choice
+                        prompt "Pin name for VIN1 in No-die Domain"
+                        default ADC1_NODIE_USING_PWR_GPIO2
+
+                        config ADC1_NODIE_USING_PWR_GPIO2
+                            bool "PWR_GPIO2"
+                    endchoice
+                endif
+
+            config BSP_USING_ADC2_NODIE
+                bool "Enable ADC2 Controller in No-die Domain"
+                default n
+
+                if BSP_USING_ADC2_NODIE
+                    choice
+                        prompt "Pin name for VIN2 in No-die Domain"
+                        default ADC2_NODIE_USING_PWR_GPIO1
+
+                        config ADC2_NODIE_USING_PWR_GPIO1
+                            bool "PWR_GPIO1"
+                    endchoice
+                endif
+
+            config BSP_USING_ADC3_NODIE
+                bool "Enable ADC3 Controller in No-die Domain"
+                default n
+
+                if BSP_USING_ADC3_NODIE
+                    choice
+                        prompt "Pin name for VIN3 in No-die Domain"
+                        default ADC3_NODIE_USING_PWR_VBAT_DET
+
+                        config ADC3_NODIE_USING_PWR_VBAT_DET
+                            bool "PWR_VBAT_DET"
+                    endchoice
+                endif
+        endif
+
+    menuconfig BSP_USING_SPI
+        bool "Using SPI"
+        select RT_USING_SPI
+        default n
+        depends on CHIP_NAME_RISCV64_C906
+
+        if BSP_USING_SPI
+
+            config BSP_USING_SPI2
+                bool "Enable SPI 2"
+                default n
+
+                if BSP_USING_SPI2
+                    choice
+                        prompt "SPI2 SCK PIN"
+                        default SPI2_SCK_USING_SD1_CLK
+
+                        config SPI2_SCK_USING_SD1_CLK
+                            bool "SD1_GPIO0"
+                    endchoice
+
+                    choice
+                        prompt "SPI2 SDI PIN"
+                        default SPI2_SDI_USING_MUX_SD1_D0
+
+                        config SPI2_SDI_USING_MUX_SD1_D0
+                            bool "SD1_D0"
+                    endchoice
+
+                    choice
+                        prompt "SPI2 SD0 PIN"
+                        default SPI2_SDO_USING_SD1_CMD
+
+                        config SPI2_SDO_USING_SD1_CMD
+                            bool "SD1_CMD"
+                    endchoice
+
+                    choice
+                        prompt "SPI2 CS PIN"
+                        default SPI2_CSX_USING_SD1_D3
+
+                        config SPI2_CSX_USING_SD1_D3
+                            bool "SD1_D3"
+                    endchoice
+                endif
+        endif
+
+    menuconfig BSP_USING_WDT
+        bool "Enable Watchdog Timer"
+        select RT_USING_WDT
+        default n
+
+        if BSP_USING_WDT
+            config BSP_USING_WDT0
+                bool "Enable WDT0"
+                default n
+
+            config BSP_USING_WDT1
+                bool "Enable WDT1"
+                default n
+
+            config BSP_USING_WDT2
+                bool "Enable WDT2"
+                default n
+        endif
+
+    menuconfig BSP_USING_PWM
+        bool "Using PWM"
+        select RT_USING_PWM
+        default n
+
+        if BSP_USING_PWM
+
+            config BSP_USING_PWM4
+                bool "Enable PWM 4"
+                default n
+
+                if BSP_USING_PWM4
+                    choice
+                        prompt "PWM4 PIN"
+                        default PWM4_USING_SD1_D3
+
+                        config PWM4_USING_UART0_TX
+                            bool "UART0_TX"
+                        config PWM4_USING_SD1_D3
+                            bool "SD1_D3"
+                    endchoice
+                endif
+                
+
+            config BSP_USING_PWM5
+                bool "Enable PWM 5"
+                default n
+
+                if BSP_USING_PWM5
+                    choice
+                        prompt "PWM5 PIN"
+                        default PWM5_USING_SD1_D2
+
+                        config PWM5_USING_UART0_RX
+                            bool "UART0_RX"
+                        config PWM5_USING_SD1_D2
+                            bool "SD1_D2"
+                    endchoice
+                endif
+
+            config BSP_USING_PWM6
+                bool "Enable PWM 6"
+                default n
+
+                if BSP_USING_PWM6
+                    choice
+                        prompt "PWM6 PIN"
+                        default PWM6_USING_SD1_D1
+
+                        config PWM6_USING_SD1_D1
+                            bool "SD1_D1"
+                    endchoice
+                endif
+
+            config BSP_USING_PWM7
+                bool "Enable PWM 7"
+                default n
+
+                if BSP_USING_PWM7
+                    choice
+                        prompt "PWM7 PIN"
+                        default PWM7_USING_SD1_D0
+
+                        config PWM7_USING_SD1_D0
+                            bool "SD1_D0"
+                    endchoice
+                endif
+
+            config BSP_USING_PWM8
+                bool "Enable PWM 8"
+                default n
+
+                if BSP_USING_PWM8
+                    choice
+                        prompt "PWM8 PIN"
+                        default PWM8_USING_SD1_CMD
+
+                        config PWM8_USING_SD1_CMD
+                            bool "SD1_CMD"
+                    endchoice
+                endif
+
+            config BSP_USING_PWM9
+                bool "Enable PWM 9"
+                default n
+
+                if BSP_USING_PWM9
+                    choice
+                        prompt "PWM9 PIN"
+                        default PWM9_USING_SD1_CLK
+
+                        config PWM9_USING_SD1_CLK
+                            bool "SD1_CLK"
+                    endchoice
+                endif
+
+            config BSP_USING_PWM10
+                bool "Enable PWM 10"
+                default n
+
+                if BSP_USING_PWM10
+                    choice
+                        prompt "PWM10 PIN"
+                        default PWM10_USING_SD1_GPIO1
+
+                        config PWM10_USING_SD1_GPIO1
+                            bool "SD1_GPIO1"
+                    endchoice
+                endif
+
+            config BSP_USING_PWM11
+                bool "Enable PWM 11"
+                default n
+
+                if BSP_USING_PWM11
+                    choice
+                        prompt "PWM11 PIN"
+
+                        config PWM11_USING_SD1_GPIO0
+                            bool "SD1_GPIO0"
+                    endchoice
+                endif
+        endif
+
+    config BSP_USING_RTC
+        bool "Enable RTC"
+        select RT_USING_RTC
+        default n
+
+    config BSP_USING_SDH
+        select RT_USING_SDIO
+        select RT_USING_DFS
+        select RT_USING_DFS_ELMFAT
+        select RT_USING_DFS_ROMFS
+        bool "Enable Secure Digital Host Controller"
+        default n
+        depends on CHIP_NAME_RISCV64_C906
+
+    config BSP_USING_ETH
+        bool "Enable Ethernet"
+        default n
+        select RT_USING_LWIP
+        select RT_USING_POSIX_FS
+        select RT_USING_POSIX_SOCKET
+        depends on CHIP_NAME_RISCV64_C906
+
+endmenu

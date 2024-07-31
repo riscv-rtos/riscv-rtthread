@@ -1,0 +1,35 @@
+config BSP_USING_C906_LITTLE
+    bool
+    select ARCH_RISCV64
+    select ARCH_RISCV_FPU_D
+    select RT_USING_COMPONENTS_INIT
+    select RT_USING_USER_MAIN
+    default y
+
+config PLIC_PHY_ADDR
+    hex
+    default 0x70000000
+
+config IRQ_MAX_NR
+    int 
+    default 128
+
+config TIMER_CLK_FREQ
+    int
+    default 25000000
+
+config GPIO_IRQ_BASE
+    int
+    default 41
+
+config SYS_GPIO_IRQ_BASE
+    int
+    default 47
+
+config UART_IRQ_BASE
+    int
+    default 30
+
+config I2C_IRQ_BASE
+    int
+    default 32

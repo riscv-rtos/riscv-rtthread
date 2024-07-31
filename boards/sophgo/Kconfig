@@ -1,0 +1,50 @@
+config SOC_NAME_CV180X
+    bool
+    default n
+
+config SOC_NAME_SG2002
+    bool
+    default n
+
+choice
+    prompt "Board Configuration"
+    default BOARD_NAME_MILKV_DUO256M_SD
+
+    config BOARD_NAME_MILKV_DUO_SD
+        select SOC_NAME_CV180X
+        bool "milkv-duo-sd"
+
+    config BOARD_NAME_MILKV_DUO_SPINOR
+        select SOC_NAME_CV180X
+        bool "milkv-duo-spinor"
+
+    config BOARD_NAME_MILKV_DUO256M_SD
+        select SOC_NAME_SG2002
+        bool "milkv-duo256m-sd"
+
+    config BOARD_NAME_MILKV_DUO256M_SPINOR
+        select SOC_NAME_SG2002
+        bool "milkv-duo256m-spinor"
+
+    config BOARD_NAME_LICHEERV_NANO_SD
+        select SOC_NAME_SG2002
+        bool "licheerv-nano-sd"
+
+endchoice
+
+choice 
+    prompt "Chip Configuration"
+    default CHIP_NAME_RISCV64_C906
+
+    config CHIP_NAME_RISCV64_C906
+        bool "riscv64-c906"
+
+    config CHIP_NAME_RISCV64_C906_LITTLE
+        bool "riscv64-c906-little"
+
+    config CHIP_NAME_AARCH64_A53
+        bool "aarch64-a53"
+
+endchoice
+
+source "$RV_RTT_ROOT/boards/sophgo/$BOARD_NAME/Kconfig"
