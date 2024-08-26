@@ -1,0 +1,29 @@
+from building import *
+
+src   = []
+cwd   = GetCurrentDir()
+include_path = [cwd]
+
+src += ['main.c']
+# add kernel samples.
+src += ['sample/completion_sample.c']
+src += ['sample/dynmem_sample.c']
+src += ['sample/event_sample.c']
+src += ['sample/idlehook_sample.c']
+src += ['sample/interrupt_sample.c']
+src += ['sample/mailbox_sample.c']
+src += ['sample/memp_sample.c']
+src += ['sample/msgq_sample.c']
+src += ['sample/mutex_sample.c']
+src += ['sample/priority_inversion.c']
+src += ['sample/producer_consumer.c']
+src += ['sample/scheduler_hook.c']
+src += ['sample/semaphore_sample.c']
+# src += ['sample/signal_sample.c']
+src += ['sample/thread_sample.c']
+src += ['sample/timer_sample.c']
+src += ['sample/timeslice_sample.c']
+
+group = DefineGroup('kernel-samples', src, depend = [], CPPPATH = include_path)
+
+Return('group')

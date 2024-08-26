@@ -1,0 +1,15 @@
+menu "Example Configuration"
+
+    config EXAMPLE_THREAD_STACK_SIZE
+        int "Example thread stack size"
+        default 1024
+
+    config EXAMPLE_THREAD_PRIORITY
+        int "Example thread priority"
+        default 20
+        range 1 31
+
+    config EXAMPLE_THREAD_TIMESLICE
+        int "Example thread timeslice"
+        default 5
+endmenu

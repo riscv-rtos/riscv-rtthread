@@ -1,0 +1,70 @@
+import os
+import sys
+
+if os.getenv('RV_RTT_ROOT'):
+    RV_RTT_ROOT = os.path.abspath(os.getenv('RV_RTT_ROOT'))
+else:
+    TOP_DIR = '../..'
+    RV_RTT_ROOT = os.path.abspath(TOP_DIR)
+
+os.environ['RV_RTT_ROOT'] = RV_RTT_ROOT
+RTT_ROOT = os.path.join(RV_RTT_ROOT, 'rt-thread')
+os.environ['RTT_ROOT'] = RTT_ROOT
+
+sys.path.append(os.path.join(RV_RTT_ROOT, 'scripts'))
+import environ
+
+CONFIG_FILE = os.path.join(os.getcwd(), '.config')
+TARGET_CHIP = environ.GetBoardInfo(CONFIG_FILE)
+
+sys.path.append(TARGET_CHIP)
+sys.path.append(os.path.join(RV_RTT_ROOT, 'rt-thread', 'tools'))
+
+import rtconfig
+from building import *
+
+TARGET = 'rtthread.' + rtconfig.TARGET_EXT
+
+DefaultEnvironment(tools=[])
+env = Environment(tools = ['mingw'],
+    AS = rtconfig.AS, ASFLAGS = rtconfig.AFLAGS,
+    CC = rtconfig.CC, CCFLAGS = rtconfig.CFLAGS,
+    CXX = rtconfig.CXX, CXXFLAGS = rtconfig.CXXFLAGS,
+    AR = rtconfig.AR, ARFLAGS = '-rc',
+    LINK = rtconfig.LINK, LINKFLAGS = rtconfig.LFLAGS)
+env.PrependENVPath('PATH', rtconfig.EXEC_PATH)
+env['ASCOM'] = env['ASPPCOM']
+
+Export('RTT_ROOT')
+Export('rtconfig')
+
+stack_size = 4096
+stack_lds = open('link_stacksize.lds', 'w')
+if GetDepend('__STACKSIZE__'): stack_size = GetDepend('__STACKSIZE__')
+stack_lds.write('__STACKSIZE__ = %d;\n' % stack_size)
+stack_lds.close()
+
+SDK_ROOT = os.path.abspath(TARGET_CHIP)
+
+# prepare building environment
+objs = PrepareBuilding(env, RTT_ROOT, has_libcpu = False)
+
+# include libraries
+board_path_prefix = SDK_ROOT + '/board'
+if os.path.exists(board_path_prefix):
+    objs.extend(SConscript(board_path_prefix + '/SConscript', variant_dir='build/board', duplicate=0))
+
+if os.path.exists(SDK_ROOT + '/drivers'):
+    drivers_path_prefix = SDK_ROOT + '/drivers'
+else:
+    drivers_path_prefix = os.path.dirname(SDK_ROOT) + '/drivers'
+
+objs.extend(SConscript(drivers_path_prefix + '/SConscript', variant_dir='build/drivers', duplicate=0))
+
+# include Third-Party components
+components_path_prefix = os.path.join(RV_RTT_ROOT, 'components')
+if os.path.exists(components_path_prefix):
+    objs.extend(SConscript(components_path_prefix + '/SConscript', variant_dir='build/components', duplicate=0))
+
+# make a building
+DoBuilding(TARGET, objs)
