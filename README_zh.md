@@ -1,4 +1,7 @@
 # riscv-rtthread 发行版
+
+[English](README.md) | **中文** |
+
 ## 概述
 
 基于 RISC-V 架构的 RT-Thread 发行版，我们集成了 RT-Thread 内核，保留了 RT-Thread 构建系统，并对RT-Thread 的仓库进行了一些重构工作，让结构更清楚，让开发者更加关注自身产品开发，开箱即用。
@@ -97,16 +100,16 @@ $ brew install scons u-boot-tools dtc
 ```
 
 ## 配置与编译
-本发行版应用位于 examples 和 applications 目录下，以 examples/get-started/hello_riscv 目录为例。
+本发行版应用位于 examples 和 applications 目录下，以 examples/get-started/blink 目录为例。
 ```shell
-$ cd examples/get-started/hello_riscv
+$ cd examples/get-started/blink
 ```
 
 ### 项目配置
 
 - 可根据当前运行目标开发板，选择默认配置，config 文件位于 boards/configs 目录下
 ```shell
-$ scons --defconfig=milkv_duo256m_riscv64_c906_config 
+$ scons --defconfig=milkv_duo256m_sd_c906_config
 ```
 
 - 菜单化配置
@@ -119,11 +122,11 @@ $ scons --menuconfig
 
 ### 编译
 ```shell
-$ cd examples/get-started/hello_riscv
+$ cd examples/get-started/blink
 $ scons -j8
 ```
 
-编译完成后，在 examples/get-started/hello_riscv/output 目录下会生成对应开发板的固件。
+编译完成后，在 examples/get-started/blink/output 目录下会生成对应开发板的固件。
 
 ## 如何使用
 每种不同的开发板烧录/运行方式可能略有不同，具体请参考对应开发板（如 board/sopogo）下的文档。

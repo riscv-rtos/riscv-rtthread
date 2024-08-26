@@ -1,4 +1,7 @@
 # riscv-rtthread Release Version
+
+**English** | [中文](README_zh.md)
+
 ## Overview
 
 This release version is based on the RISC-V architecture, integrating the RT-Thread kernel while retaining the RT-Thread build system. We have also restructured the RT-Thread repository to make the structure clearer and focus developers on their own product development. The components and device drivers integrated in this release version have been tested on actual hardware and projects, and bugs are fixed regularly. Out-of-the-box usage is supported.
@@ -96,16 +99,16 @@ $ brew install scons u-boot-tools dtc
 ```
 
 ## Configuration and Compilation
-Applications in this release version are located in the examples and applications directories. Using the examples/get-started/hello_riscv directory as an example:
+Applications in this release version are located in the examples and applications directories. Using the examples/get-started/blink directory as an example:
 ```shell
-$ cd examples/get-started/hello_riscv
+$ cd examples/get-started/blink
 ```
 
 ### Project Configuration
 
 - You can select the default configuration based on the current running target development board. The config file is located in the boards/configs directory.
 ```shell
-$ scons --defconfig=milkv_duo256m_riscv64_c906_config 
+$ scons --defconfig=milkv_duo256m_sd_c906_config
 ```
 
 - Menu-based configuration
@@ -118,11 +121,11 @@ Select the current target board to compile, then configure the RT-Thread kernel 
 
 ### Compilation
 ```shell
-$ cd examples/get-started/hello_riscv
+$ cd examples/get-started/blink
 $ scons -j8
 ```
 
-After compilation, firmware for the corresponding development board will be generated in the output directory of examples/get-started/hello_riscv.
+After compilation, firmware for the corresponding development board will be generated in the output directory of examples/get-started/blink.
 
 ## How to Use
 The method of burning/run for each different development board may vary slightly. Please refer to the documentation for the corresponding development board (e.g., board/sopogo) for details.
