@@ -1,0 +1,19 @@
+menu "Example Configuration"
+
+    config EXAMPLE_NETWORK_USING_ETH
+        bool "Example network enable ethernet"
+        select BSP_USING_ETH
+        default y
+
+    config EXAMPLE_NETWORK_BUFFER_SIZE
+        int "Example network buffer size"
+        default 1024
+
+    config EXAMPLE_NETWORK_TCPSERVER_PORT
+        int "Example network tcpserver port"
+        default 5000
+
+    config EXAMPLE_NETWORK_UDPSERVER_PORT
+        int "Example network udpserver port"
+        default 5001
+endmenu

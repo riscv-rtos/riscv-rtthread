@@ -1,0 +1,19 @@
+from building import *
+
+src   = []
+cwd   = GetCurrentDir()
+include_path = [cwd]
+
+# add filesystem samples.
+src += ['main.c']
+src += Split('''
+    sample/tcpclient_sample.c
+    sample/tcpclient_select_sample.c
+    sample/tcpserver_sample.c
+    sample/udpclient_sample.c
+    sample/udpserver_sample.c
+''')
+
+group = DefineGroup('network-samples', src, depend = [''], CPPPATH = include_path)
+
+Return('group')
