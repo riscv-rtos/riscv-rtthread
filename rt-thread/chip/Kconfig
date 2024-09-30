@@ -1,3 +1,7 @@
 if CHIP_FAMILY_SOPHGO
     source "$RTT_DIR/chip/sophgo/Kconfig"
 endif
+
+if CHIP_FAMILY_QEMU
+    source "$RTT_DIR/chip/qemu/Kconfig"
+endif

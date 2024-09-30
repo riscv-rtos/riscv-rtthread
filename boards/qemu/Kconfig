@@ -1,0 +1,18 @@
+choice
+    prompt "Board Configuration"
+    default BOARD_NAME_RISCV_VIRT64
+
+    config BOARD_NAME_RISCV_VIRT64
+        bool "riscv-virt64"
+        help
+          QEMU Virt64 RISCV board
+endchoice
+
+choice 
+    prompt "Chip Configuration"
+    default CHIP_NAME_RISCV_VIRT64
+
+    config CHIP_NAME_RISCV_VIRT64
+        bool "riscv-virt64"
+
+endchoice

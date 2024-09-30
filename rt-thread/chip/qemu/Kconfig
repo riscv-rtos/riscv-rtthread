@@ -1,0 +1,3 @@
+if CHIP_NAME_RISCV_VIRT64
+    source "$RTT_DIR/chip/qemu/riscv_virt64/Kconfig"
+endif

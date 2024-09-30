@@ -3,6 +3,10 @@ menu "Board Configuration"
     prompt "Chip Family Configuration"
     default CHIP_FAMILY_SOPHGO
 
+    config CHIP_FAMILY_QEMU
+        bool "Qemu"
+        help
+            Support for the qemu boards.
     config CHIP_FAMILY_SOPHGO
         bool "Sophgo"
         help
@@ -10,7 +14,13 @@ menu "Board Configuration"
 
     endchoice
 
-    source "$RV_RTT_ROOT/boards/$CHIP_FAMILY/Kconfig"
+    if CHIP_FAMILY_SOPHGO
+        source "$RV_RTT_ROOT/boards/sophgo/Kconfig"
+    endif
+    
+    if CHIP_FAMILY_QEMU
+        source "$RV_RTT_ROOT/boards/qemu/Kconfig"
+    endif
 
 endmenu
 
